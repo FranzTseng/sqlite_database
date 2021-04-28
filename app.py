@@ -29,10 +29,20 @@ def show_search_result():
     cat = input("Enter the category your are looking for: ")
     search_result = database.search_cat(cat) 
     for search in search_result:
-        print(f"""{search[0]} | {search[1]} 
+        print(f"""\n{search[0]} | {search[1]} 
 -------------------------------------------  
 {search[2]}
 -------------------------------------------\n\n""")
+
+def show_label_search():
+    lab = input("Enter the label you are looking for: ")
+    search_result = database.search_lab(lab)
+    for search in search_result:
+        print(f"""\n{search[0]} | {search[1]} 
+-------------------------------------------  
+{search[2]}
+-------------------------------------------\n\n""")
+            
 
     
 
@@ -45,7 +55,7 @@ while user_input !="5":
     elif user_input == "3":
         show_search_result()
     elif user_input == "4":
-        pass
+        show_label_search()        
     user_input = input(menu)
 
 

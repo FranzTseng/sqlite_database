@@ -5,7 +5,8 @@ menu = """What would you like to do?
         2) Display all note
         3) Search notes by category
         4) Search note by labels
-        5) Exit
+        5) Search note by keyword
+        6) Exit
 Your choice: """
 
 database.create_table()
@@ -43,11 +44,19 @@ def show_label_search():
 {search[2]}
 -------------------------------------------\n\n""")
             
+def show_note_search():
+    keyword = input("Enter the keyword: ")
+    search_result = database.search_note(keyword)
+    for search in search_result:
+        print(f"""\n{search[0]} | {search[1]} 
+-------------------------------------------  
+{search[2]}
+-------------------------------------------\n\n""")
 
     
 
 
-while user_input !="5":
+while user_input !="6":
     if user_input =="1":
         prompt_new_note()
     elif user_input =="2":
@@ -56,6 +65,8 @@ while user_input !="5":
         show_search_result()
     elif user_input == "4":
         show_label_search()        
+    elif user_input == "5":
+        show_note_search()
     user_input = input(menu)
 
 

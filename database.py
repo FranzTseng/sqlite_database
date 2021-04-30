@@ -30,8 +30,6 @@ SEARCH_CATEGORY = "SELECT * FROM note WHERE category = ?;"
 
 SEARCH_LABEL = "SELECT * FROM note WHERE label = ?;"
 
-SEARCH_NOTE = "SELECT * FROM note WHERE content LIKE ?;"
-
 connection = sqlite3.connect("data.db")
 
 def create_table():
@@ -69,10 +67,4 @@ def search_lab(lab):
     with connection:
         cursor = connection.cursor()
         cursor.execute(SEARCH_LABEL, (lab,))
-        return cursor.fetchall()
-
-def search_note(keyword):
-    with connection:
-        cursor = connection.cursor()
-        cursor.execute(SEARCH_NOTE, (f"% {keyword} %",))
         return cursor.fetchall()

@@ -1,15 +1,30 @@
 import sqlite3
 
 
-CREATE_TABLE = """CREATE TABLE IF NOT EXISTS note (
-                category TEXT,
-                label TEXT,
+CREATE_NOTE_TABLE = """CREATE TABLE IF NOT EXISTS note (
+                id INTEGER PRIMARY KEY,
+                time REAL
                 content TEXT
 );"""
 
-INSERT_NOTE = "INSERT INTO note VALUES(?,?,?);"
+CREATE_CATEGORY_TABLE = """CREATE TABLE IF NOT EXISTS categories (
+                category TEXT
+);"""
 
-DISPLAY_NOTE = "SELECT * FROM note;" 
+CREATE_LABEL_TABLE = """CREATE TABLE IF NOT EXISTS labels (
+                        label TEXT,
+);"""
+
+INSERT_NOTE = "INSERT INTO note (time, content) VALUES(?,?);"
+
+INSERT_CATEGORY = "INSERT INTO categories VALUES(?);"
+
+INSERT_LABEL = "INSERT INTO labels VALUES(?);"
+
+DISPLAY_NOTE = """SELECT * FROM category
+JOIN note ON ;
+
+""" 
 
 SEARCH_CATEGORY = "SELECT * FROM note WHERE category = ?;"
 
@@ -21,11 +36,22 @@ connection = sqlite3.connect("data.db")
 
 def create_table():
     with connection:
-        connection.execute(CREATE_TABLE)
-
-def note(cat, lab, content):
+        connection.execute(CREATE_NOTE_TABLE)
+        connection.execute(CREATE_CATEGORY_TABLE)
+        connection.execute(CREATE_LABEL_TABLE)
+    
+def note(content):
     with connection:
-        connection.execute(INSERT_NOTE, (cat, lab, content))
+        today_timestamp = datetime.datetime.today().timestamp()
+        connection.execute(INSERT_NOTE, (today_timestamp, content))
+
+def category(category):
+    with connection:
+        connection.execute(INSERT_CATEGORY,(category,)) 
+
+def label(lab):
+    with connection:
+        connection.execute(INSERT_LABELE, (lab,))
 
 def display():
     with connection:

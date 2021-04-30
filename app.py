@@ -1,4 +1,5 @@
 import database
+import datetime
 
 menu = """What would you like to do?
         1) Enter a new note
@@ -16,7 +17,9 @@ def prompt_new_note():
     cat = input("Note category: ")
     lab = input("Note label: ")
     content = input("Enter your note: ")
-    database.note(cat, lab, content)
+    database.note(content)
+    database.category(cat)
+    database.label(lab)
 
 def show_note():
     notes = database.display()

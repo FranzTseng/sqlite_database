@@ -12,16 +12,23 @@ Your choice: """
 database.create_table()
 user_input = input(menu)
 
+cat_operation = {1:"Statistics", 2:"data science", 3:"cybersecurity", 4:"networking",5:"linux" }
+
 def prompt_new_note():
-    cat = input("Note category: ")
+    cat = input("""1.Statistics 
+2.data science
+3.cybersecurity
+4.networking
+5.linux
+Category of this note: """)
     lab = input("Note label: ")
     content = input("Enter your note: ")
-    database.note(cat, lab, content)
+    database.note(cat_operation[int(cat)], lab, content)
 
 def show_note():
     notes = database.display()
     for note in notes:
-        print(f"""{note[2]} | {note[3]} on {note[1]} 
+        print(f"""{note[2]} | {note[3]}                           on {note[1]} 
 -------------------------------------------  
 {note[4]}
 -------------------------------------------\n\n""")

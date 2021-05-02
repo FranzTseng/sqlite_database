@@ -12,14 +12,14 @@ Your choice: """
 database.create_table()
 user_input = input(menu)
 
-cat_operation = {1:"Statistics", 2:"data science", 3:"cybersecurity", 4:"networking",5:"linux" }
+cat_operation = {1:"statistics", 2:"data science", 3:"cybersecurity", 4:"networking",5:"linux" }
 
 def prompt_new_note():
     cat = input("""1.Statistics 
-2.data science
-3.cybersecurity
-4.networking
-5.linux
+2.Data Science
+3.Cybersecurity
+4.Networking
+5.Linux
 Category of this note: """)
     lab = input("Note label: ")
     content = input("Enter your note: ")
@@ -34,8 +34,14 @@ def show_note():
 -------------------------------------------\n\n""")
 
 def show_cat_search():
-    cat = input("Enter the category your are looking for: ")
-    search_result = database.search_cat(cat) 
+    cat = input("""1.Statistics 
+2.Data Science
+3.Cybersecurity
+4.Networking
+5.Linux
+
+Enter the category your are looking for: """)
+    search_result = database.search_cat(cat_operation[int(cat)]) 
     for search in search_result:
         print(f"""\n{search[1]} | {search[2]} | {search[3]} 
 -------------------------------------------  

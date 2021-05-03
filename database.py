@@ -55,6 +55,6 @@ def search_lab(lab):
 def search_keyword(keyword):
     with connection:
         cursor = connection.cursor()
-        cursor.execute(SEARCH_KEYWORD, (f"% {keyword} %",))
+        cursor.execute(SEARCH_KEYWORD, (f"%{keyword}%",))
         return cursor.fetchall()
 
